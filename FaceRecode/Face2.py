@@ -1,12 +1,11 @@
-import ard as ard
 import cv2
 import numpy as np
 from os import listdir
 from os.path import isfile, join
-import serial as pyserial
 import time
 import pyttsx3
-import serial
+import serial as pyserial
+
 
 q = 1
 x = 0
@@ -14,7 +13,6 @@ c = 0
 m = 0
 d = 0
 while q <= 2:
-    # replace G:\\New folder (2)\\pycharm pro\\New folder\\faces2\\ with that one you created
     data_path = 'G:\\New folder (2)\\pycharm pro\\New folder\\faces2\\'
     onlyfiles = [f for f in listdir(data_path) if isfile(join(data_path, f))]
     Training_data, Lebels = [], []
@@ -31,6 +29,7 @@ while q <= 2:
     q += 1
 face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
+
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
@@ -38,7 +37,7 @@ def speak(audio):
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
-engine.setProperty("voice", voices[0].id)
+engine.setProperty("voice", voices[1].id)
 engine.setProperty("rate", 140)
 engine.setProperty("volume", 1000)
 
@@ -75,10 +74,12 @@ while True:
             cv2.putText(image, "unlocked", (250, 450), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1, (0, 255, 255))
             cv2.imshow('face', image)
             x += 1
+
         else:
             cv2.putText(image, "locked", (250, 450), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1, (0, 255, 255))
             cv2.imshow('face', image)
             c += 1
+
     except:
         cv2.putText(image, "Face not found", (250, 450), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1, (0, 255, 255))
         cv2.imshow('face', image)
@@ -91,16 +92,12 @@ cap.release()
 cv2.destroyAllWindows()
 if x >= 5:
     m = 1
-    # ard = serial.Serial('com5', 9600)
-    time.sleep(2)
+    time.sleep(0)
     var = 'a'
     c = var.encode()
-    speak("Face recognition complete..it is matching with database...welcome..sir..Door is openning for 5 seconds")
-    ard.write(c)
+    speak("Face recognition complete..it is matching with database...welcome back sir..")
     time.sleep(4)
 elif c == 30:
-    speak("face is not matching..please try again")
+    speak("face is not matching...Please call the Authorized User...")
 elif d == 20:
     speak("face is not found please try again ")
-if m == 1:
-    speak("door is closing")
