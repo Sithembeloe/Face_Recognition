@@ -1,3 +1,3 @@
-
+First thing to do is to make sure that you create and empty folder to store your faces then open the facerecognition.py code and paste the path of that new folder you created(I have shown you in a python comment format where you will paste the path of your new folder) also make sure you have haarcascade_frontalface_default.xml file inside your Face Recogntion folder(where your facerecognition.py code and Face2 will be stored).
 
 
