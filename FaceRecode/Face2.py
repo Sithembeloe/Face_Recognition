@@ -13,6 +13,7 @@ c = 0
 m = 0
 d = 0
 while q <= 2:
+    # replace G:\\New folder (2)\\pycharm pro\\New folder\\faces2\\ with that one you created
     data_path = 'G:\\New folder (2)\\pycharm pro\\New folder\\faces2\\'
     onlyfiles = [f for f in listdir(data_path) if isfile(join(data_path, f))]
     Training_data, Lebels = [], []
